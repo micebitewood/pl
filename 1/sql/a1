@@ -1,0 +1,1 @@
+SELECT * FROM prices JOIN regions ON prices.regionid = regions.id JOIN products ON products.prodid = prices.prodid;

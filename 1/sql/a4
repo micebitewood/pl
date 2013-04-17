@@ -1,0 +1,1 @@
+SELECT DISTINCT a IN (1, a, 3) FROM ''

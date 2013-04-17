@@ -1,0 +1,4 @@
+SELECT EmployeeID, FirstName, LastName, HireDate, City 
+FROM Employees 
+WHERE HireDate >= DATE'1993-05-22';
+

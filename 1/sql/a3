@@ -1,0 +1,1 @@
+SELECT city, target, sales FROM offices WHERE region = 'Eastern' ORDER BY city;

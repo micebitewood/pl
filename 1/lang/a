@@ -1,0 +1,15 @@
+myProcedure ( int : n )
+begin
+	abs = n
+	if a < 0 then abs = 0 - abs fi
+
+	sum = 0
+	read count
+	while count > 0 do
+		read n
+		sum += n	#equiv: sum = sum + n
+		count -= 1	# equiv: count = count - 1
+		sum = a + (b + c) * d
+	od
+	write sum
+end
