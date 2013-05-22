@@ -1,0 +1,70 @@
+SQL Parser
+
+1. SQL is an infinite language because we can call (select) in the middle of some statement, which is like a endless recursive.
+2. Removing parentheses produces lots of shift/reduce conflicts, because the parser becomes ambiguous. When encountered with SELECT again, the parser was not told to shift or reduce it.
+3. 
+	1) Please refer to the attached pages
+	2) Please refer to the attached pages
+	3) When reading the first id "foo", the parser cannot decide which of the nonterminals, assignment and subr_call, is the one to choose, because both of them begin with id.
+	4) 	stmt -> id term
+		term -> assignment
+			-> subr_call
+		assignment -> := expr
+		subr_call -> (arg_list)
+		expr -> primary expr_tail
+			-> (expr) expr_tail
+		expr_tail -> op expr
+				-> eps
+		primary -> id factor
+		factor -> subr_call
+				-> eps
+		op -> +|-|*|/
+		arg_list -> expr args_tail
+		args_tail -> , arg_list
+				-> eps
+
+				
+C++ Standard
+
+1. There are five kinds of tokens, which are identifier, keyword, literal, operator, and punctuator.
+2. There are 87 keywords.
+3. floating_literal -> fractional_constant [exponent_part] [floating_suffix]
+	fractional_constant -> [digit_sequence] . digit_sequence
+						-> digit_sequence .
+	exponent_part -> {e|E} [sign] digit_sequence
+	sign -> +|-
+	digit_sequence -> [digit_sequence] digit
+	floating_suffix -> f|l|F|L
+4. There must be some modification of LL parser, because as Page 1204 shows, "integer-suffix -> unsigned-suffix [long-suffix]
+							-> unsigned-suffix [long-long-suffix]", which cannot be predicted in a LL(1) parser.
+
+
+Precedence
+
+The postfix operator increments the address stored in p and q, so that p and q can then point to the next character. 
+After the assignment, the entire space which p have pointed to equals that q have pointed to. Because (*(p++)) = (*(q++)) untill *q equals 0.
+
+
+Scopes
+
+1. 10
+2. 7
+
+
+Short-Circuit Evaluation
+
+1. Yes. It is stated at Page 55.
+2. 
+Output 1 0
+Output 2 0
+Output 3 0
+Output 4 0
+Output 5 0
+	Because C++ implements shor-circuit evaluation, so when x++ < 5, the statement y++ > 3 is omitted. Then we got x == 5, so (x++ < 5) is false. Now we compare y++ and 3, which is also false. Thus, the for-loop is terminated.
+3.
+Output 1 1
+Output 2 2
+Output 3 3
+...
+	Because x equals y, the statement "x++ < 5 || y++ > 3" is always true.
+4. Yes. As Page 519 and 520 show, "...(&&), but evaluates its right-hand operand only if the value of its left-hand operand is true", "...(||), but evaluates its right-hand operand only if the value of its left-hand operand is false".

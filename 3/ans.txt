@@ -1,0 +1,29 @@
+Java Modules:
+1. Nothing happens.
+2. No, Java cannot impose a limit of unnamed packages, because it may have more than 1 unnamed package but not required to do so.
+3. A compilation unit consists of three optional parts, which are package declaration, import declarations, and top level type declarations.
+4. Java modulels are closed. We need import a Java package before using it.
+5. No, Java doesn't have similar concept.
+6. It means that by writing import static, programmers can get access to the static members of the class without writing the class name. This makes code clean and easy to write.
+7. It is a compile-time erroe if a top level type declaration contains following access modifiers: protected, private, or static.
+
+Object Oriented Programming in C#
+1. A sealed class cannot be inherited by other classes.
+2. A partial declaration is used to divide a definition into different parts.
+3. Yes, as we can see in page 54.
+4. Class modifiers are used to modify declarations of classes. New modifier is used in nested classes, in order to hide the base class members.
+5. Properties are a combination of fields and methods. A property has a getter and a setter, and the syntax for accessing fields and properties is the same. The difference between fields and properties is that properties do not denote storage locations.
+6. Internal means "access limited to this program", and protected internal means "access limited to this program or types derived from the containing class.
+7. Volatile field supports synchronization in multi-threaded programs. With a volatile modifier, we can ensure that every time when we access the field, it is the latest.
+8. Subclasses cannot override non-virtual methods in parent classes. However, a virtual method can be overridden, but it's not necessary.
+
+More Object Oriented Programming
+1. foo
+2. bar
+3. foo
+4. 30
+5. 30
+6. 15
+7. null
+8. 20
+9. 20

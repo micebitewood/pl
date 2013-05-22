@@ -1,0 +1,55 @@
+Static Linkages and Displays
+	1. 6 activation records, including one outer, one inner, and four innermosts.
+	2. Please refer to attachments.
+	3. Please refer to attachments.
+
+Call-by-Name
+	In delayed
+	Param: Getting time
+	3520
+	
+Parameter Passing
+	pass-by-value.(units of time)
+		call a subprogram: 3
+		copy BigObject: 10
+		access object(x.DoMore): 1 * 30
+		access object(x.DoOperation): 1 * 30
+		while loop evaluation: 1 * 30
+		total: 103
+	pass-by-reference.(units of time)
+		call a subprogram: 3
+		copy memory address(reference): 1
+		access pointer(the reference of x): (1 + 1) * 30
+		access object(x.DoMore and x.DoOperation): (1 + 1) * 30
+		while loop evaluation: 1 * 30
+		total: 154
+
+Lambda Calculus
+	1. (\lam stands for lambda)
+	SKK = (\lam x.\lam y.\lam z.xz(yz))K K
+		= (\lam y.\lam z.Kz(yz))K
+		= (\lam y.\lam z.(\lam x.\lam y.x)z(yz))K
+		= (\lam y.\lam z.(\lam y.z)(yz))K
+		= (\lam y.\lam z.z)K
+		= \lam z.z
+	2. (\lam stands for lambda)
+		(\lam x.* x x)(+ 2 3) = (* (+ 2 3) (+ 2 3)) = (* 5 5) = 25
+		(\lam x.* x x)(+ 2 3) = (\lam x.* x x)5 = (* 5 5) = 25
+	3. 
+		(a) need an alpha-conversion.
+			correct way: (\lam xy.yx)(\lam x.xy) = (\lam xy.yx)(\lam x.xz) = \lam y.y(\lam x.xz)
+			incorrect way: (\lam xy.yx)(\lam x.xy) = \lam y.y(\lam x.xy)
+		(b) need an alpha-conversion.
+			correct way: (\lam x.xz)(\lam xz.xy) = (\lam x.xz)(\lam xw.xy) = (\lam xw.xy)z = \lam w.zy
+			incorrect way: (\lam x.xz)(\lam xz.xy) = (\lam xz.xy)z = \lam z.zy
+		(c) no need.
+			(\lam x.xy)(\lam x.x) = (\lam x.x)y = y
+	4.  (\lam mnfx.mf(nfx))(\lam fx.fx)(\lam fx.f(fx))
+		= (\lam nfx.(\lam fx.fx)f(nfx))(\lam fx.f(fx))
+		= (\lam nfx.(\lam x.fx)(nfx))(\lam fx.f(fx))
+		= (\lam nfx.f(nfx))(\lam fx.f(fx))
+		= (\lam fx.f((\lam fx.f(fx))fx))
+		= (\lam fx.f((\lam x.f(fx))x))
+		= (\lam fx.f(f(fx)))
+		= 3
+	
