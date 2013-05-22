@@ -1,0 +1,100 @@
+Prolog
+	6.
+		The program enters an infinite loop. It's because that we have two rules for join, and then connection(U1, U2):-join(U1, UM), connection(UM, U2) continues running recursively.
+		For example, if we call connection(john, tom), we'll have join(john, tom), which returns true. Later we'll call join(john, tom), connection(tom, tom), connection(tom, tom) will then call join(tom, john), connection(john, tom). Then we have an infinite loop.
+	13.
+		recommend(X, Y) is a relation that Y is recommended for X. Y is recommended because Y's message is shown in X's feed and X, Y are second degree connections.
+
+More Prolog
+	1. 
+		foo(roberta).
+		foo(ashwin).
+		
+		hello(roberta).
+		hello(brock).
+		hello(john).
+		
+		world(roberta).
+		world(ashwin).
+		
+	2. It's because by reordering, the query can get the right answer as soon as possible. Without reordering, the query must check whether goal(ashwin) is true or not.
+		original trace:
+			Call: (6) goal(_G2058) ? creep
+			Call: (7) sub1(_G2058) ? creep
+			Call: (8) foo(_G2058) ? creep
+			Exit: (8) foo(ashwin) ? creep
+			Exit: (7) sub1(ashwin) ? creep
+			Call: (7) sub2(ashwin) ? creep
+			Call: (8) hello(ashwin) ? creep
+			Fail: (8) hello(ashwin) ? creep
+			Fail: (7) sub2(ashwin) ? creep
+			Redo: (8) foo(_G2058) ? creep
+			Exit: (8) foo(roberta) ? creep
+			Exit: (7) sub1(roberta) ? creep
+			Call: (7) sub2(roberta) ? creep
+			Call: (8) hello(roberta) ? creep
+			Exit: (8) hello(roberta) ? creep
+			Call: (8) world(roberta) ? creep
+			Exit: (8) world(roberta) ? creep
+			Exit: (7) sub2(roberta) ? creep
+			Exit: (6) goal(roberta) ? creep
+			X = roberta.
+		new trace:
+			Call: (6) goal(_G2058) ? creep
+			Call: (7) sub1(_G2058) ? creep
+			Call: (8) foo(_G2058) ? creep
+			Exit: (8) foo(roberta) ? creep
+			Exit: (7) sub1(roberta) ? creep
+			Call: (7) sub2(roberta) ? creep
+			Call: (8) hello(roberta) ? creep
+			Exit: (8) hello(roberta) ? creep
+			Call: (8) world(roberta) ? creep
+			Exit: (8) world(roberta) ? creep
+			Exit: (7) sub2(roberta) ? creep
+			Exit: (6) goal(roberta) ? creep
+			X = roberta ;
+			Redo: (8) foo(_G2058) ? creep
+			Exit: (8) foo(ashwin) ? creep
+			Exit: (7) sub1(ashwin) ? creep
+			Call: (7) sub2(ashwin) ? creep
+			Call: (8) hello(ashwin) ? creep
+			Fail: (8) hello(ashwin) ? creep
+			Fail: (7) sub2(ashwin) ? creep
+			Fail: (6) goal(_G2058) ? creep
+			false.
+	3. Because foo(X) first found X=ashwin, then it is cut with !, which means Prolog will never backtrack again through any subgoal to foo(X).
+	4. Because with sub1 we first found X=ashwin, but ashwin sub2(ashwin) is false. Then we found foo(roberta), and hello(roberta) returns true, so we encounter with the cut operator and can never get back again. Luckily, world(roberta) is also true.
+	
+Unification
+	1. error. Different functor.
+	2. X=4, Y=b(3, 1, Y).
+	3. X=4, B=7, D=C, A=2.
+	4. error. A=2=7.
+	5. error. Different constants.
+	6. X=e(f(6, 2), g(8, 1)).
+	7. X=f(6, 2), 
+	8. error. Different number of arguments for b.
+	9. X=1, Y=2.
+	
+ELIZA
+	1. First divide the input into different parts. Second make simplifications. Third find key words and then sort them. Fourth reply, then combine the answers and print out.
+	2. sr change similar words to some certain words, and change "you" to me, as well as "me" to "you".
+	3. rules([[everyone,2],[
+		[1,[_,[*,everyone,everybody,nobody,noone,M],_],0,
+		[really,',',M,?],
+		[surely,not,M,?],
+		[can,you,think,of,anyone,in,particular,?],
+		[who,',',for,example,?],
+		[you,are,thinking,of,a,very,special,person,?],
+		[who,',',may,i,ask,?],
+		[someone,special,perhaps,?],
+		[you,have,a,paticular,person,in,mind,',',do,you,not,?],
+		[who,do,you,think,you,are,talking,about,?]]]]).
+	4. ELIZA picks the first keyword of the highest priority, and select the answers in order. What I mean is that if the same question is asked for several times, each time ELIZA will pick the next answer in order.
+	5. rules([[john,0],[
+		[1,[_],0,
+		[hi,john,',',whats,up,?],
+		[nice,to,see,you,again,'!',how,r,u,?],
+		[bye,john,'!']]]]).
+		
+	this is john
